@@ -16,6 +16,8 @@
  * Content elements
  */
 
+$GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_wrapper_start'] = 'DMA\\ContentSimpleGridWrapperStart';
+$GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_wrapper_stop'] = 'DMA\\ContentSimpleGridWrapperStop';
 $GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_row_start'] = 'DMA\\ContentSimpleGridRowStart';
 $GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_row_stop'] = 'DMA\\ContentSimpleGridRowStop';
 $GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_column_start'] = 'DMA\\ContentSimpleGridColumnStart';
@@ -26,6 +28,8 @@ $GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_column_stop'] = 'DMA\\Conte
  * Front end wrappers
  */
 
+$GLOBALS['TL_WRAPPERS']['start'][] = 'dma_simplegrid_wrapper_start';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'dma_simplegrid_wrapper_stop';
 $GLOBALS['TL_WRAPPERS']['start'][] = 'dma_simplegrid_row_start';
 $GLOBALS['TL_WRAPPERS']['stop'][] = 'dma_simplegrid_row_stop';
 $GLOBALS['TL_WRAPPERS']['start'][] = 'dma_simplegrid_column_start';
@@ -91,6 +95,7 @@ $GLOBALS['DMA_SIMPLEGRID_CONFIG']['bootstrap'] = array
     'name' => 'Bootstrap',
     'config' => array
     (
+        'hasWrapper' => true,
         'hasRows' => true,
         'hasColumns' => true,
         'hasColumnOffset' => true,
@@ -100,6 +105,7 @@ $GLOBALS['DMA_SIMPLEGRID_CONFIG']['bootstrap'] = array
         'hasRowClasses' => false,
         'hasColumnClasses' => false,
         'row-class' => 'row',
+        'wrapper-class' => 'container',
         'columns-sizes' => array('1','2','3','4','5','6','7','8','9','10','11','12'),
         'columns-config' => array
         (
@@ -144,58 +150,65 @@ $GLOBALS['DMA_SIMPLEGRID_CONFIG']['bootstrap4'] = array
     'name' => 'Bootstrap 4',
     'config' => array
     (
+        'hasWrapper' => true,
         'hasRows' => true,
         'hasColumns' => true,
         'hasColumnOffset' => true,
         'hasColumnOffsetRight' => false,
         'hasColumnPush' => true,
         'hasColumnPull' => true,
+        'hasWrapperClasses' => true,
         'hasRowClasses' => false,
         'hasColumnClasses' => false,
         'row-class' => 'row',
+        'wrapper-class' => '',
         'columns-sizes' => array('1','2','3','4','5','6','7','8','9','10','11','12'),
         'columns-config' => array
         (
             'xs' => array
             (
                 'name' => 'extra small',
-                'column-class' => 'col-xs-%d',
-                'offset-class' => 'col-xs-offset-%d',
-                'push-class' => 'col-xs-push-%d',
-                'pull-class' => 'col-xs-pull-%d'
+                'column-class' => 'col-%d',
+                'offset-class' => 'offset-%d',
+                'push-class' => 'push-%d',
+                'pull-class' => 'pull-%d'
             ),
             'sm' => array
             (
                 'name' => 'small',
                 'column-class' => 'col-sm-%d',
-                'offset-class' => 'col-sm-offset-%d',
-                'push-class' => 'col-sm-push-%d',
-                'pull-class' => 'col-sm-pull-%d'
+                'offset-class' => 'offset-sm-%d',
+                'push-class' => 'push-sm-%d',
+                'pull-class' => 'pull-sm-%d'
             ),
             'md' => array
             (
                 'name' => 'medium',
                 'column-class' => 'col-md-%d',
-                'offset-class' => 'col-md-offset-%d',
-                'push-class' => 'col-md-push-%d',
-                'pull-class' => 'col-md-pull-%d'
+                'offset-class' => 'offset-md-%d',
+                'push-class' => 'push-md-%d',
+                'pull-class' => 'pull-md-%d'
             ),
             'lg' => array
             (
                 'name' => 'large',
                 'column-class' => 'col-lg-%d',
-                'offset-class' => 'col-lg-offset-%d',
-                'push-class' => 'col-lg-push-%d',
-                'pull-class' => 'col-lg-pull-%d'
+                'offset-class' => 'offset-lg-%d',
+                'push-class' => 'push-lg-%d',
+                'pull-class' => 'pull-lg-%d'
             ),
             'xl' => array
             (
                 'name' => 'extra large',
                 'column-class' => 'col-xl-%d',
-                'offset-class' => 'col-xl-offset-%d',
-                'push-class' => 'col-xl-push-%d',
-                'pull-class' => 'col-xl-pull-%d'
+                'offset-class' => 'offset-xl-%d',
+                'push-class' => 'push-xl-%d',
+                'pull-class' => 'pull-xl-%d'
             )
+        ),
+        'additional-classes' => array
+        (
+            'wrapper' => array('container', 'container-fluid')
         )
     )
 );
@@ -278,6 +291,7 @@ $GLOBALS['DMA_SIMPLEGRID_CONFIG']['foundation'] = array
     (
         'hasRows' => true,
         'hasColumns' => true,
+        'hasBlockGrid' => true,
         'hasColumnOffset' => true,
         'hasColumnOffsetRight' => false,
         'hasColumnPush' => true,
@@ -286,7 +300,26 @@ $GLOBALS['DMA_SIMPLEGRID_CONFIG']['foundation'] = array
         'hasColumnClasses' => true,
         'row-class' => 'row',
         'column-class' => 'columns',
+        'block-sizes' => array('1','2','3','4','5','6','7','8'),
         'columns-sizes' => array('1','2','3','4','5','6','7','8','9','10','11','12'),
+        'block-config' => array
+        (
+            'small' => array
+            (
+                'name' => 'small',
+                'block-class' => 'small-up-%d'
+            ),
+            'medium' => array
+            (
+                'name' => 'medium',
+                'block-class' => 'medium-up-%d'
+            ),
+            'large' => array
+            (
+                'name' => 'large',
+                'block-class' => 'large-up-%d'
+            )
+        ),
         'columns-config' => array
         (
             'small' => array
@@ -416,6 +449,88 @@ $GLOBALS['DMA_SIMPLEGRID_CONFIG']['unsemantic'] = array
         (
             'row' => array('grid-offset'),
             'columns' => array('grid-parent','grid-offset','hide-on-mobile','hide-on-tablet','hide-on-desktop')
+        )
+    )
+);
+
+$GLOBALS['DMA_SIMPLEGRID_CONFIG']['gridlex'] = array
+(
+    'name' => 'gridlex',
+    'config' => array
+    (
+        'hasRows' => true,
+        'hasColumns' => true,
+        'hasBlockGrid' => true,
+        //'hasColumnOffset' => true,
+        //'hasColumnOffsetRight' => true,
+        //'hasColumnPush' => true,
+        //'hasColumnPull' => true,
+        'hasRowClasses' => true,
+        'hasColumnClasses' => true,
+        'row-class' => 'grid',
+        'column-class' => 'col',
+        'block-sizes' => array('1','2','3','4','5','6','7','8','9','10','11','12'),
+        'columns-sizes' => array('1','2','3','4','5','6','7','8','9','10','11','12'),
+        'block-config' => array
+        (
+            'all' => array
+            (
+                'name' => 'all',
+                'block-class' => '^-%d',
+            ),
+            'xs' => array
+            (
+                'name' => 'xs',
+                'block-class' => '^_xs-%d',
+            ),
+            'sm' => array
+            (
+                'name' => 'sm',
+                'block-class' => '^_sm-%d',
+            ),
+            'md' => array
+            (
+                'name' => 'medium',
+                'block-class' => '^_md-%d',
+            ),
+            'lg' => array
+            (
+                'name' => 'large',
+                'block-class' => '^_lg-%d',
+            )
+        ),
+        'columns-config' => array
+        (
+            'all' => array
+            (
+                'name' => 'all',
+                'column-class' => '^-%d',
+            ),
+            'xs' => array
+            (
+                'name' => 'xs',
+                'column-class' => '^_xs-%d',
+            ),
+            'sm' => array
+            (
+                'name' => 'sm',
+                'column-class' => '^_sm-%d',
+            ),
+            'md' => array
+            (
+                'name' => 'medium',
+                'column-class' => '^_md-%d',
+            ),
+            'lg' => array
+            (
+                'name' => 'large',
+                'column-class' => '^_lg-%d',
+            )
+        ),
+        'additional-classes' => array
+        (
+            'row' => array('^-center', '^-right', '^-middle', '^-bottom', '^-spaceBetween', '^-spaceAround', '^-reverse', '^-column', '^-column-reverse', '^-noGutter', '^-equalHeight'),
+            'columns' => array('col-first', 'col-last')
         )
     )
 );
