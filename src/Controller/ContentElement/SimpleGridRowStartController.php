@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Dma\DmaSimpleGrid\Controller\ContentElement;
 
-use Contao\ArrayUtil;
 use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
@@ -30,9 +29,9 @@ class SimpleGridRowStartController extends AbstractContentElementController
 
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response
     {
-        $arrConfiguredClasses = [];
+        $arrClasses = explode(' ', $template->class);
 
-        if (($GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? false) && ($GLOBALS['DMA_SIMPLEGRID_CONFIG'][($GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? null)] ?? false)) {
+        if (($GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? false) && ($GLOBALS['DMA_SIMPLEGRID_CONFIG'][$GLOBALS['TL_CONFIG']['dmaSimpleGridType']] ?? false)) {
             $arrConfigData = $GLOBALS['DMA_SIMPLEGRID_CONFIG'][$GLOBALS['TL_CONFIG']['dmaSimpleGridType']];
         } else {
             $arrConfigData = $GLOBALS['DMA_SIMPLEGRID_CONFIG'][$GLOBALS['DMA_SIMPLEGRID_CONFIG']['DMA_SIMPLEGRID_FALLBACK']];
@@ -47,7 +46,7 @@ class SimpleGridRowStartController extends AbstractContentElementController
                 if (\is_array($arrElementSettings)) {
                     foreach ($arrElementSettings as $columnKey => $varValue) {
                         if ($varValue) {
-                            $arrConfiguredClasses[] = sprintf($arrConfigData['config']['block-config'][$columnKey]['block-class'], $varValue);
+                            $arrClasses[] = sprintf($arrConfigData['config']['block-config'][$columnKey]['block-class'], $varValue);
                         }
                     }
                 }
@@ -56,25 +55,21 @@ class SimpleGridRowStartController extends AbstractContentElementController
 
         if (($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalRowClasses'] ?? false) && $arrConfigData['config']['additional-classes']['row'] && $model->dma_simplegrid_additionalrowclasses) {
             $arrAdditionalClasses = StringUtil::deserialize($model->dma_simplegrid_additionalrowclasses, true);
-
-            if (\count($arrAdditionalClasses) > 0) {
-                foreach ($arrAdditionalClasses as $strClassKey) {
-                    $arrConfiguredClasses[] = $strClassKey;
-                }
-            }
+            $arrClasses = array_merge($arrClasses, $arrAdditionalClasses);
         }
 
-        if ($arrConfigData['config']['row-class'] ?? false) {
-            ArrayUtil::arrayInsert($arrConfiguredClasses, 0, $arrConfigData['config']['row-class']);
+        if (!empty($arrConfigData['config']['row-class'])) {
+            $arrClasses = array_merge($arrClasses, explode(' ', (string) $arrConfigData['config']['row-class']));
         }
 
-        $strClasses = implode(' ', $arrConfiguredClasses);
+        $arrClasses = array_map(
+            static fn ($strClass) => str_replace('^', '', $strClass), // gridlex
+            $arrClasses,
+        );
 
-        if (str_contains($strClasses, '^')) {
-            $strClasses = str_replace(' ^', '', $strClasses);
-        }
+        $arrClasses = array_unique(array_filter($arrClasses));
 
-        $template->class .= ' '.$strClasses;
+        $template->class = implode(' ', $arrClasses);
 
         return $template->getResponse();
     }

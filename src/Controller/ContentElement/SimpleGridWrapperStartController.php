@@ -29,9 +29,9 @@ class SimpleGridWrapperStartController extends AbstractContentElementController
 
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response
     {
-        $strAdditionalClasses = '';
+        $arrClasses = explode(' ', $template->class);
 
-        if (($GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? false) && ($GLOBALS['DMA_SIMPLEGRID_CONFIG'][($GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? null)] ?? false)) {
+        if (($GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? false) && ($GLOBALS['DMA_SIMPLEGRID_CONFIG'][$GLOBALS['TL_CONFIG']['dmaSimpleGridType']] ?? false)) {
             $arrConfigData = $GLOBALS['DMA_SIMPLEGRID_CONFIG'][$GLOBALS['TL_CONFIG']['dmaSimpleGridType']];
         } else {
             $arrConfigData = $GLOBALS['DMA_SIMPLEGRID_CONFIG'][$GLOBALS['DMA_SIMPLEGRID_CONFIG']['DMA_SIMPLEGRID_FALLBACK']];
@@ -39,15 +39,15 @@ class SimpleGridWrapperStartController extends AbstractContentElementController
 
         if (($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalWrapperClasses'] ?? false) && $arrConfigData['config']['additional-classes']['wrapper'] && $model->dma_simplegrid_additionalwrapperclasses) {
             $arrAdditionalClasses = StringUtil::deserialize($model->dma_simplegrid_additionalwrapperclasses, true);
-
-            if (\count($arrAdditionalClasses) > 0) {
-                foreach ($arrAdditionalClasses as $strClassKey) {
-                    $strAdditionalClasses .= ' '.$strClassKey;
-                }
-            }
+            $arrClasses = array_merge($arrClasses, $arrAdditionalClasses);
         }
 
-        $template->class = 'wrapper '.$arrConfigData['config']['wrapper-class'].$strAdditionalClasses;
+        $arrClasses[] = 'wrapper';
+        $arrClasses[] = $arrConfigData['config']['wrapper-class'];
+
+        $arrClasses = array_unique(array_filter($arrClasses));
+
+        $template->class = implode(' ', $arrClasses);
 
         return $template->getResponse();
     }
