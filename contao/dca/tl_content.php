@@ -151,22 +151,22 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['dma_simplegrid_blocksettings'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['dma_simplegrid_additionalwrapperclasses'] = [
-    'exclude'          => true,
-    'inputType'        => 'checkbox',
-    'eval'             => ['multiple' => true],
-    'sql'              => "blob NULL",
+    'exclude'   => true,
+    'inputType' => 'select',
+    'eval'      => ['multiple' => true, 'chosen' => true],
+    'sql'       => "blob NULL",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['dma_simplegrid_additionalcolumnclasses'] = [
-    'exclude'          => true,
-    'inputType'        => 'checkbox',
-    'eval'             => ['multiple' => true],
-    'sql'              => "blob NULL",
+    'exclude'   => true,
+    'inputType' => 'select',
+    'eval'      => ['multiple' => true, 'chosen' => true],
+    'sql'       => "blob NULL",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['dma_simplegrid_additionalrowclasses'] = [
-    'exclude'          => true,
-    'inputType'        => 'checkbox',
-    'eval'             => ['multiple' => true],
-    'sql'              => "blob NULL",
+    'exclude'   => true,
+    'inputType' => 'select',
+    'eval'      => ['multiple' => true, 'chosen' => true],
+    'sql'       => "blob NULL",
 ];

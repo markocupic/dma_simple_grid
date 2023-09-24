@@ -107,8 +107,8 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['dma_simplegrid_pushsettings'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['dma_simplegrid_additionalrowclasses'] = [
-    'exclude'          => true,
-    'inputType'        => 'checkbox',
-    'eval'             => ['multiple' => true],
-    'sql'              => "blob NULL",
+    'exclude'   => true,
+    'inputType' => 'checkbox',
+    'eval'      => ['multiple' => true, 'chosen' => true],
+    'sql'       => "blob NULL",
 ];
