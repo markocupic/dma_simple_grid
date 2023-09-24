@@ -28,7 +28,10 @@ class SimpleGridColumnStartController extends AbstractContentElementController
 
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response
     {
-        $template->class .= ' column';
+        $arrClasses = explode(' ', $template->class.' column');
+        $arrClasses = array_unique(array_filter($arrClasses));
+
+        $template->class = implode(' ', $arrClasses);
 
         return $template->getResponse();
     }
