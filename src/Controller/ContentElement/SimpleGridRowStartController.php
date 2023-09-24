@@ -53,7 +53,7 @@ class SimpleGridRowStartController extends AbstractContentElementController
             }
         }
 
-        if (($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalRowClasses'] ?? false) && $arrConfigData['config']['additional-classes']['row'] && $model->dma_simplegrid_additionalrowclasses) {
+        if (($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalRowClasses'] ?? false) && !empty($arrConfigData['config']['additional-classes']['row'])  && $model->dma_simplegrid_additionalrowclasses) {
             $arrAdditionalClasses = StringUtil::deserialize($model->dma_simplegrid_additionalrowclasses, true);
             $arrClasses = array_merge($arrClasses, $arrAdditionalClasses);
         }
