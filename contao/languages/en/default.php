@@ -19,6 +19,9 @@ use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridRowStopController;
 use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridWrapperStartController;
 use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridWrapperStopController;
 
+/**
+ * Content elements
+ */
 $GLOBALS['TL_LANG']['CTE']['dma_simplegrid'] = 'Grid System (DMA SimpleGrid)';
 $GLOBALS['TL_LANG']['CTE'][SimpleGridWrapperStartController::TYPE] = ['SimpleGrid: Wrapper Start', 'SimpleGrid: Wrapper Start'];
 $GLOBALS['TL_LANG']['CTE'][SimpleGridWrapperStopController::TYPE] = ['SimpleGrid: Wrapper Stop', 'SimpleGrid: Wrapper Stop'];
@@ -30,10 +33,10 @@ $GLOBALS['TL_LANG']['CTE'][SimpleGridColumnStopController::TYPE] = ['SimpleGrid:
 /*
  * Form fields
  */
-$GLOBALS['TL_LANG']['FFL']['dma_simplegrid_row_start'] = ['Grid Row Start'];
-$GLOBALS['TL_LANG']['FFL']['dma_simplegrid_row_stop'] = ['Grid Row Stop'];
-$GLOBALS['TL_LANG']['FFL']['dma_simplegrid_column_start'] = ['Grid Column Start'];
-$GLOBALS['TL_LANG']['FFL']['dma_simplegrid_column_stop'] = ['Grid Column Stop'];
+$GLOBALS['TL_LANG']['FFL']['dma_simplegrid_row_start'] = ['Grid Row Start', 'Grid Row Start'];
+$GLOBALS['TL_LANG']['FFL']['dma_simplegrid_row_stop'] = ['Grid Row Stop', 'Grid Row Stop'];
+$GLOBALS['TL_LANG']['FFL']['dma_simplegrid_column_start'] = ['Grid Column Start', 'Grid Column Start'];
+$GLOBALS['TL_LANG']['FFL']['dma_simplegrid_column_stop'] = ['Grid Column Stop', 'Grid Column Stop'];
 
 /*
  * Miscellaneous

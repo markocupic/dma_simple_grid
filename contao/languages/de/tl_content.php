@@ -12,14 +12,20 @@ declare(strict_types=1);
  * @link https://github.com/DMAGmbH/dma_simple_grid
  */
 
-$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_legend'] = 'DMA SimpleGrid';
-
-$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_columnsettings'] = ['Spalten-Einstellungen', 'Spalten-Einstellungen für die in der Konfiguration vorgegeben Klassen bzw. Media-Queries'];
-$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_offsetsettings'] = ['Offset-Einstellungen', 'Offset-Einstellungen'];
-$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_offsetrightsettings'] = ['Offset-Right-Einstellungen', 'Offset-Right-Einstellungen'];
-$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_pullsettings'] = ['Pull-Einstellungen', 'Pull-Einstellungen'];
-$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_pushsettings'] = ['Push-Einstellungen', 'Push-Einstellungen'];
+/**
+ * Fields
+ */
 $GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_additionalcolumnclasses'] = ['Zusätzliche Spalten-Klassen', 'Zusätzliche Spalten-Klassen'];
 $GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_additionalrowclasses'] = ['Zusätzliche Zeilen-Klassen', 'Zusätzliche Zeilen-Klassen'];
 $GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_additionalwrapperclasses'] = ['Zusätzliche Wrapper-Klassen', 'Zusätzliche Wrapper-Klassen'];
 $GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_blocksettings'] = ['Block-Grid-Einstellungen', 'Block-Grid-Einstellungen für die in der Konfiguration vorgegeben Klassen bzw. Media-Queries'];
+$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_columnsettings'] = ['Spalten-Einstellungen', 'Spalten-Einstellungen für die in der Konfiguration vorgegeben Klassen bzw. Media-Queries'];
+$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_offsetrightsettings'] = ['Offset-Right-Einstellungen', 'Offset-Right-Einstellungen'];
+$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_offsetsettings'] = ['Offset-Einstellungen', 'Offset-Einstellungen'];
+$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_pullsettings'] = ['Pull-Einstellungen', 'Pull-Einstellungen'];
+$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_pushsettings'] = ['Push-Einstellungen', 'Push-Einstellungen'];
+
+/**
+ * Legends
+ */
+$GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_legend'] = 'DMA SimpleGrid';
