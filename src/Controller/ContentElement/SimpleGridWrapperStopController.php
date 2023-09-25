@@ -17,6 +17,7 @@ namespace Dma\DmaSimpleGrid\Controller\ContentElement;
 use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
+use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,8 +27,16 @@ class SimpleGridWrapperStopController extends AbstractContentElementController
 {
     public const TYPE = 'dma_simplegrid_wrapper_stop';
 
+    public function __construct(private readonly ScopeMatcher $scopeMatcher)
+    {
+    }
+
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response
     {
+        if ($this->scopeMatcher->isBackendRequest($request)) {
+            return new Response('', Response::HTTP_NO_CONTENT);
+        }
+
         return $template->getResponse();
     }
 }
