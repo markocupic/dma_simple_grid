@@ -17,7 +17,7 @@ declare(strict_types=1);
  */
 $GLOBALS['TL_LANG']['tl_form_field']['dma_simplegrid_legend'] = 'DMA SimpleGrid';
 
-/**
+/*
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_form_field']['dma_simplegrid_columnsettings'] = ['Spalten-Einstellungen', 'Spalten-Einstellungen für die in der Konfiguration vorgegeben Klassen bzw. Media-Queries'];

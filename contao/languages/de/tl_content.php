@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @link https://github.com/DMAGmbH/dma_simple_grid
  */
 
-/**
+/*
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_additionalcolumnclasses'] = ['Zusätzliche Spalten-Klassen', 'Zusätzliche Spalten-Klassen'];
@@ -25,7 +25,7 @@ $GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_offsetsettings'] = ['Offset-Ei
 $GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_pullsettings'] = ['Pull-Einstellungen', 'Pull-Einstellungen'];
 $GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_pushsettings'] = ['Push-Einstellungen', 'Push-Einstellungen'];
 
-/**
+/*
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_content']['dma_simplegrid_legend'] = 'DMA SimpleGrid';

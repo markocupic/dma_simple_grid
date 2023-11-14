@@ -12,12 +12,12 @@ declare(strict_types=1);
  * @link https://github.com/DMAGmbH/dma_simple_grid
  */
 
-/**
+/*
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_settings']['dma_simplegrid_legend'] = 'DMA SimpleGrid Einstellungen';
 
-/**
+/*
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_settings']['dmaSimpleGridType'] = ['Grid Typ', 'Grid Typ'];

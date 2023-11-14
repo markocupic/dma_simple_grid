@@ -19,12 +19,14 @@ use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\StringUtil;
+use Contao\System;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement(SimpleGridRowStartController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_rowstart')]
-class SimpleGridRowStartController extends AbstractContentElementController
+#[AsContentElement(DmaSimplegridRowStartController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_row_start')]
+class DmaSimplegridRowStartController extends AbstractContentElementController
 {
     public const TYPE = 'dma_simplegrid_row_start';
 

@@ -98,7 +98,7 @@ class AcrossTablesDcaCallbacks
                     }
 
                     if (
-                        isset($this->arrConfigData['config']['additional-classes']['row']) && ($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalRowClasses'] ?? false)
+                        isset($this->arrConfigData['config']['additional-classes']['row']) && $GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalRowClasses'] ?? false
                     ) {
                         $rowStartFields[] = 'dma_simplegrid_additionalrowclasses';
                     }
@@ -114,7 +114,7 @@ class AcrossTablesDcaCallbacks
 
                 if ('dma_simplegrid_wrapper_start' === $k) {
                     if (
-                        isset($this->arrConfigData['config']['additional-classes']['wrapper']) && ($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalWrapperClasses'] ?? false)
+                        isset($this->arrConfigData['config']['additional-classes']['wrapper']) && $GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalWrapperClasses'] ?? false
                     ) {
                         PaletteManipulator::create()
                             ->addLegend('dma_simplegrid_legend', 'invisible_legend', PaletteManipulator::POSITION_BEFORE)

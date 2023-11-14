@@ -12,36 +12,26 @@ declare(strict_types=1);
  * @link https://github.com/DMAGmbH/dma_simple_grid
  */
 
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridColumnStartController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridColumnStopController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridRowStartController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridRowStopController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridWrapperStartController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridWrapperStopController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridColumnStartController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridColumnStopController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridRowStartController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridRowStopController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridWrapperStartController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridWrapperStopController;
 use Dma\DmaSimpleGrid\Controller\FormField\FormSimpleGridColumnStart;
 use Dma\DmaSimpleGrid\Controller\FormField\FormSimpleGridColumnStop;
 use Dma\DmaSimpleGrid\Controller\FormField\FormSimpleGridRowStart;
 use Dma\DmaSimpleGrid\Controller\FormField\FormSimpleGridRowStop;
 
 /*
- * Content elements
- */
-$GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_wrapper_start'] = SimpleGridWrapperStartController::class;
-$GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_wrapper_stop'] = SimpleGridWrapperStopController::class;
-$GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_row_start'] = SimpleGridRowStartController::class;
-$GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_row_stop'] = SimpleGridRowStopController::class;
-$GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_column_start'] = SimpleGridColumnStartController::class;
-$GLOBALS['TL_CTE']['dma_simplegrid']['dma_simplegrid_column_stop'] = SimpleGridColumnStopController::class;
-
-/*
  * Front end wrappers
  */
-$GLOBALS['TL_WRAPPERS']['start'][] = 'dma_simplegrid_wrapper_start';
-$GLOBALS['TL_WRAPPERS']['stop'][] = 'dma_simplegrid_wrapper_stop';
-$GLOBALS['TL_WRAPPERS']['start'][] = 'dma_simplegrid_row_start';
-$GLOBALS['TL_WRAPPERS']['stop'][] = 'dma_simplegrid_row_stop';
-$GLOBALS['TL_WRAPPERS']['start'][] = 'dma_simplegrid_column_start';
-$GLOBALS['TL_WRAPPERS']['stop'][] = 'dma_simplegrid_column_stop';
+$GLOBALS['TL_WRAPPERS']['start'][] = DmaSimplegridWrapperStartController::TYPE;
+$GLOBALS['TL_WRAPPERS']['stop'][] = DmaSimplegridWrapperStopController::TYPE;
+$GLOBALS['TL_WRAPPERS']['start'][] = DmaSimplegridRowStartController::TYPE;
+$GLOBALS['TL_WRAPPERS']['stop'][] = DmaSimplegridRowStopController::TYPE;
+$GLOBALS['TL_WRAPPERS']['start'][] = DmaSimplegridColumnStartController::TYPE;
+$GLOBALS['TL_WRAPPERS']['stop'][] = DmaSimplegridColumnStopController::TYPE;
 
 /*
  * Front end form fields

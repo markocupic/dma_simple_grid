@@ -22,10 +22,10 @@ use Contao\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement(SimpleGridRowStopController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_rowstop')]
-class SimpleGridRowStopController extends AbstractContentElementController
+#[AsContentElement(DmaSimplegridColumnStartController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_column_start')]
+class DmaSimplegridColumnStartController extends AbstractContentElementController
 {
-    public const TYPE = 'dma_simplegrid_row_stop';
+    public const TYPE = 'dma_simplegrid_column_start';
 
     public function __construct(private readonly ScopeMatcher $scopeMatcher)
     {
@@ -36,6 +36,11 @@ class SimpleGridRowStopController extends AbstractContentElementController
         if ($this->scopeMatcher->isBackendRequest($request)) {
             return new Response('', Response::HTTP_NO_CONTENT);
         }
+
+        $arrClasses = explode(' ', $template->class.' column');
+        $arrClasses = array_unique(array_filter($arrClasses));
+
+        $template->class = implode(' ', $arrClasses);
 
         return $template->getResponse();
     }

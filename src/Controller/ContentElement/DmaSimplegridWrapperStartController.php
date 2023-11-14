@@ -19,15 +19,16 @@ use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\StringUtil;
+use Contao\System;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement(SimpleGridWrapperStartController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_wrapperstart')]
-class SimpleGridWrapperStartController extends AbstractContentElementController
+#[AsContentElement(DmaSimplegridWrapperStartController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_wrapper_start')]
+class DmaSimplegridWrapperStartController extends AbstractContentElementController
 {
     public const TYPE = 'dma_simplegrid_wrapper_start';
-
     public function __construct(private readonly ScopeMatcher $scopeMatcher)
     {
     }

@@ -13,12 +13,12 @@ declare(strict_types=1);
  */
 
 use Contao\ArrayUtil;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridWrapperStartController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridWrapperStopController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridRowStartController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridRowStopController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridColumnStartController;
-use Dma\DmaSimpleGrid\Controller\ContentElement\SimpleGridColumnStopController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridWrapperStartController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridWrapperStopController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridRowStartController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridRowStopController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridColumnStartController;
+use Dma\DmaSimpleGrid\Controller\ContentElement\DmaSimplegridColumnStopController;
 use Dma\DmaSimpleGrid\DataContainer\AcrossTablesDcaCallbacks;
 use Dma\DmaSimpleGrid\DataContainer\DcaUtil;
 
@@ -32,12 +32,12 @@ ArrayUtil::arrayInsert($GLOBALS['TL_DCA']['tl_content']['list']['operations'], 0
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes'][SimpleGridWrapperStartController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes'][SimpleGridWrapperStopController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes'][SimpleGridRowStartController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes'][SimpleGridRowStopController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes'][SimpleGridColumnStartController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes'][SimpleGridColumnStopController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes'][DmaSimplegridWrapperStartController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes'][DmaSimplegridWrapperStopController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes'][DmaSimplegridRowStartController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes'][DmaSimplegridRowStopController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes'][DmaSimplegridColumnStartController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes'][DmaSimplegridColumnStopController::TYPE] = '{type_legend},type;{protected_legend:hide},protected;{expert_legend:hide},guests;{invisible_legend:hide},invisible,start,stop';
 
 /**
  * Fields

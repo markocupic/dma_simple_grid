@@ -18,12 +18,14 @@ use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\CoreBundle\Routing\ScopeMatcher;
+use Contao\System;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement(SimpleGridWrapperStopController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_wrapperstop')]
-class SimpleGridWrapperStopController extends AbstractContentElementController
+#[AsContentElement(DmaSimplegridWrapperStopController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_wrapper_stop')]
+class DmaSimplegridWrapperStopController extends AbstractContentElementController
 {
     public const TYPE = 'dma_simplegrid_wrapper_stop';
 

@@ -18,15 +18,16 @@ use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\CoreBundle\Routing\ScopeMatcher;
+use Contao\System;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement(SimpleGridColumnStopController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_columnstop')]
-class SimpleGridColumnStopController extends AbstractContentElementController
+#[AsContentElement(DmaSimplegridRowStopController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_row_stop')]
+class DmaSimplegridRowStopController extends AbstractContentElementController
 {
-    public const TYPE = 'dma_simplegrid_column_stop';
-
+    public const TYPE = 'dma_simplegrid_row_stop';
     public function __construct(private readonly ScopeMatcher $scopeMatcher)
     {
     }
