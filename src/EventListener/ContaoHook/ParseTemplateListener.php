@@ -21,6 +21,12 @@ use Dma\DmaSimpleGrid\DataContainer\DcaUtil;
 #[AsHook('parseTemplate', priority: 100)]
 class ParseTemplateListener
 {
+    /**
+     * This will add the column classes to any legacy template
+     *
+     * @param Template $objTemplate
+     * @return void
+     */
     public function __invoke(Template $objTemplate): void
     {
         if (DcaUtil::hasDmaGridInfos($objTemplate->getData())) {
