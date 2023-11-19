@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Dma\DmaSimpleGrid\Twig\Extension;
 
-use Contao\CoreBundle\Framework\Adapter;
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Dma\DmaSimpleGrid\DataContainer\DcaUtil;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -23,8 +22,6 @@ use Twig\TwigFunction;
 
 class GridColumnClassManager extends AbstractExtension
 {
-    private Adapter $member;
-
     public function __construct(
         private readonly RequestStack $requestStack,
         private readonly ScopeMatcher $scopeMatcher,
@@ -34,31 +31,31 @@ class GridColumnClassManager extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('get_dma_grid_classes', [$this, 'getDmaGridClasses']),
+            new TwigFunction('get_dma_grid_classes', [$this, 'getDmaGridClasses'], ['needs_context' => true]),
         ];
     }
 
     /**
-     * Append the additional grid classes that have been set in the content element.
+     * Append the additional grid classes, that have been set in the content element.
      */
-    public function getDmaGridClasses(array $dataTemplate): string
+    public function getDmaGridClasses(array $_context): string
     {
-        $origClasses = $dataTemplate['element_css_classes'] ?? '';
+        $origElementCssClasses = $_context['element_css_classes'] ?? '';
 
         $request = $this->requestStack->getCurrentRequest();
 
         if (!$this->scopeMatcher->isFrontendRequest($request)) {
-            return $origClasses;
+            return $origElementCssClasses;
         }
 
-        $dataContentElement = $dataTemplate['data'] ?? [];
+        $rowContentElement = $_context['data'] ?? [];
 
-        if (!DcaUtil::hasDmaGridInfos($dataContentElement)) {
-            return $origClasses;
+        if (!DcaUtil::hasDmaGridInfos($rowContentElement)) {
+            return $origElementCssClasses;
         }
 
-        $arrClasses = array_merge(explode(' ', $origClasses), explode(' ', DcaUtil::getColumnClasses($dataContentElement)));
+        $arrElementCssClasses = array_merge(explode(' ', $origElementCssClasses), explode(' ', DcaUtil::getColumnClasses($rowContentElement)));
 
-        return implode(' ', array_filter(array_unique($arrClasses)));
+        return implode(' ', array_filter(array_unique($arrElementCssClasses)));
     }
 }
