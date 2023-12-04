@@ -22,10 +22,7 @@ use Dma\DmaSimpleGrid\DataContainer\DcaUtil;
 class ParseTemplateListener
 {
     /**
-     * This will add the column classes to any legacy template
-     *
-     * @param Template $objTemplate
-     * @return void
+     * This will add the column classes to any legacy template.
      */
     public function __invoke(Template $objTemplate): void
     {
