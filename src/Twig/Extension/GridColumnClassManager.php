@@ -56,6 +56,9 @@ class GridColumnClassManager extends AbstractExtension
 
         $arrElementCssClasses = array_merge(explode(' ', $origElementCssClasses), explode(' ', DcaUtil::getColumnClasses($rowContentElement)));
 
+        // Replace col-xs-* with col-*
+        $arrElementCssClasses =  str_replace('col-xs-', 'col-', $arrElementCssClasses);
+
         return implode(' ', array_filter(array_unique($arrElementCssClasses)));
     }
 }

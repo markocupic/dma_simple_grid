@@ -1,8 +1,4 @@
 {% extends "@Contao/content_element/_base.html.twig" %}
 
-{% block wrapper %}
-    {# Attach the grid classes to the class attribute of the content element wrapper tag. #}
-    {% set element_css_classes = get_dma_grid_classes() %}
-
-    {{ parent() }}
-{% endblock %}
+{# Attach the grid classes to the class attribute of the content element wrapper tag. #}
+{% set element_css_classes = get_dma_grid_classes() %}
