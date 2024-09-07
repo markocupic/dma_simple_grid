@@ -132,7 +132,7 @@ class AcrossTablesDcaCallbacks
 
                 if (!\is_array($palette) && str_contains($palette, 'class')) {
                     if ('dma_simplegrid_row_start' === $k) {
-                        if (($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalRowClasses'] ?? false) && $this->arrConfigData['config']['additional-classes']['row']) {
+                        if (($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalRowClasses'] ?? false) && ($this->arrConfigData['config']['additional-classes']['row'] ?? false)) {
                             $fieldsToAppendCurrentLoop[] = 'dma_simplegrid_additionalrowclasses';
                         }
                     }
