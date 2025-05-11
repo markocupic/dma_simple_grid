@@ -89,6 +89,10 @@ class DcaUtil
             if (\is_array($arrElementSettings)) {
                 foreach ($arrElementSettings as $columnKey => $varValue) {
                     if ($varValue) {
+                        if(!isset($gridConfig['columns-config'][$columnKey]['column-class'])){
+                            continue;
+                        }
+
                         if ('hide' === $varValue) {
                             $arrConfiguredClasses[] = $gridConfig['columns-config'][$columnKey]['hide-class'];
                         } else {
@@ -226,7 +230,7 @@ class DcaUtil
 
             if (\is_array($arrElementSettings)) {
                 foreach ($arrElementSettings as $columnKey => $varValue) {
-                    if ($varValue && $gridConfig['columns-config'][$columnKey]['name']) {
+                    if ($varValue && isset($gridConfig['columns-config'][$columnKey]['name'])) {
                         $arrConfiguredClasses[] = $gridConfig['columns-config'][$columnKey]['name'].': '.$varValue;
                     }
                 }
