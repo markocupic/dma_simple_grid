@@ -22,9 +22,8 @@ use Doctrine\DBAL\Connection;
 
 class FormField
 {
-    public function __construct(
-        private readonly Connection $connection,
-    ) {
+    public function __construct(private readonly Connection $connection)
+    {
     }
 
     #[AsCallback(table: 'tl_form_field', target: 'config.onsubmit')]
@@ -44,7 +43,7 @@ class FormField
                     $activeRecord->pid,
                     'dma_simplegrid_column_stop',
                     $activeRecord->sorting,
-                ]
+                ],
             );
 
             // Check if a stop element should be inserted
@@ -68,7 +67,7 @@ class FormField
                     $activeRecord->pid,
                     'dma_simplegrid_row_stop',
                     $activeRecord->sorting,
-                ]
+                ],
             );
 
             // Check if a stop element should be inserted

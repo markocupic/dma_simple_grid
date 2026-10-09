@@ -1,0 +1,12 @@
+{#
+    Opens the grid column. The matching "column stop" element closes it.
+
+    Context:
+        grid_classes    The CSS classes of the grid column (list of strings)
+#}
+{% set column_attributes = attrs()
+    .setIfExists('id', element_html_id|default)
+    .addClass([element_css_classes|default]|merge(grid_classes))
+    .mergeWith(column_attributes|default)
+%}
+<div{{ column_attributes }}>

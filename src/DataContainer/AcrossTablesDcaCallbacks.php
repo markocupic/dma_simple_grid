@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace Dma\DmaSimpleGrid\DataContainer;
 
+use Contao\CoreBundle\DataContainer\DataContainerOperation;
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
+use Contao\StringUtil;
 use Contao\Widget;
 use Dma\DmaSimpleGrid\Config\GridConfig;
 
@@ -147,31 +149,43 @@ class AcrossTablesDcaCallbacks
         }
     }
 
+    /**
+     * Shows the configured grid settings next to the operations of the record.
+     */
     #[AsCallback(table: 'tl_form_field', target: 'list.operations.show_simplegrid_infos.button')]
     #[AsCallback(table: 'tl_content', target: 'list.operations.show_simplegrid_infos.button')]
-    public function getSimpleGridInfos(array $arrRow): string
+    public function getSimpleGridInfos(DataContainerOperation $operation): void
     {
-        $strGridInfo = '';
-
-        if (($arrRow['dma_simplegrid_columnsettings'] ?? false) || ($arrRow['dma_simplegrid_additionalwrapperclasses'] ?? false)) {
-            $strGridInfo .= DcaUtil::getColumnsShowString($arrRow);
-        }
-
-        if ('' !== $strGridInfo) {
-            $strGridInfo = '<a href="#" class="tl_gray" style="padding-right:10px; white-space:nowrap; max-width:200px; display:inline-block; overflow:hidden; text-overflow:ellipsis;" title="'.$strGridInfo.'" onclick="return false;">'.$strGridInfo.'</a>';
-        }
-
-        return $strGridInfo;
+        $operation->setHtml(self::generateSimpleGridInfos($operation->getRecord() ?? []));
     }
 
-    public function columnsSelectCallback(Widget $widget = null): array
+    public static function generateSimpleGridInfos(array $row): string
+    {
+        $gridInfo = '';
+
+        if (($row['dma_simplegrid_columnsettings'] ?? false) || ($row['dma_simplegrid_additionalwrapperclasses'] ?? false)) {
+            $gridInfo = DcaUtil::getColumnsShowString($row);
+        }
+
+        if ('' === $gridInfo) {
+            return '';
+        }
+
+        return \sprintf(
+            '<span class="tl_gray" style="padding-right:10px; white-space:nowrap; max-width:200px; display:inline-block; overflow:hidden; text-overflow:ellipsis; vertical-align:middle" title="%s">%s</span>',
+            StringUtil::specialcharsAttribute($gridInfo),
+            StringUtil::specialchars($gridInfo),
+        );
+    }
+
+    public function columnsSelectCallback(Widget|null $widget = null): array
     {
         GridConfig::initialize();
         $gridConfig = GridConfig::getDataAll();
 
         $arrColumnsSetting = [];
 
-        if ($gridConfig['columns-config']) {
+        if (!empty($gridConfig['columns-config'])) {
             foreach ($gridConfig['columns-config'] as $configName => $arrColumnConfig) {
                 $options = [];
 
@@ -216,7 +230,7 @@ class AcrossTablesDcaCallbacks
 
         $arrColumnsSetting = [];
 
-        if ($gridConfig['block-config']) {
+        if (!empty($gridConfig['block-config'])) {
             foreach ($gridConfig['block-config'] as $configName => $arrColumnConfig) {
                 $arrColumnsSetting[$configName] = [
                     'label' => $arrColumnConfig['name'],

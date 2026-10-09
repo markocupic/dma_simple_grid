@@ -49,7 +49,7 @@ class Content
                     'tl_article' === $activeRecord->ptable ? '' : $activeRecord->ptable,
                     'dma_simplegrid_column_stop',
                     $activeRecord->sorting,
-                ]
+                ],
             );
 
             // Check if a stop element should be inserted
@@ -76,7 +76,7 @@ class Content
                     'tl_article' === $activeRecord->ptable ? '' : $activeRecord->ptable,
                     'dma_simplegrid_row_stop',
                     $activeRecord->sorting,
-                ]
+                ],
             );
 
             // Check if a stop element should be inserted
@@ -103,7 +103,7 @@ class Content
                     'tl_article' === $activeRecord->ptable ? '' : $activeRecord->ptable,
                     'dma_simplegrid_wrapper_stop',
                     $activeRecord->sorting,
-                ]
+                ],
             );
 
             // Check if a stop element should be inserted

@@ -5,8 +5,18 @@ Contao Erweiterung, die einfache Strukturen für Grid-Systeme bietet:
 - Selektoren für Spalten-Breiten sowie Offset-, Pull- und Push-Werte
 - Konfigurationsarray für Bootstrap und Foundation
 
-## Abhängigkeiten
-https://github.com/menatwork/MultiColumnWizard
+## Voraussetzungen
+- PHP 8.1 oder höher
+- Contao 5.3 oder höher (Contao 4.13 wird nicht mehr unterstützt)
+- [MultiColumnWizard](https://github.com/menatwork/MultiColumnWizard)
+
+Der Code ist bereits für Contao 6 vorbereitet. Contao 6 wird freigeschaltet, sobald der MultiColumnWizard Contao 6 unterstützt.
+
+## Templates
+Die Inhaltselemente verwenden die modernen Twig-Templates `content_element/dma_simplegrid_*`.
+Eigene Templates auf Basis der alten `ce_dma_simplegrid_*`-Templates müssen als Variante der neuen Templates
+(z.B. `templates/content_element/dma_simplegrid_row_start/custom.html.twig`) neu angelegt werden.
+Die Grid-Klassen stehen im Template in der Variable `grid_classes` zur Verfügung.
 
 ## Installation
 - zunächst muss die Erweiterung *MultiColumnWizard* installiert werden.

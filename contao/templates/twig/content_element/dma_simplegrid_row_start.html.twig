@@ -1,0 +1,12 @@
+{#
+    Opens the grid row. The matching "row stop" element closes it.
+
+    Context:
+        grid_classes    The CSS classes of the grid row (list of strings)
+#}
+{% set row_attributes = attrs()
+    .setIfExists('id', element_html_id|default)
+    .addClass([element_css_classes|default]|merge(grid_classes))
+    .mergeWith(row_attributes|default)
+%}
+<div{{ row_attributes }}>

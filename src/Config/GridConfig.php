@@ -24,14 +24,22 @@ class GridConfig
             return;
         }
 
-        if (($GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? false) && ($GLOBALS['DMA_SIMPLEGRID_CONFIG'][($GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? null)] ?? false)) {
+        if (($GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? false) && ($GLOBALS['DMA_SIMPLEGRID_CONFIG'][$GLOBALS['TL_CONFIG']['dmaSimpleGridType'] ?? null] ?? false)) {
             static::$arrCache['grid'] = $GLOBALS['DMA_SIMPLEGRID_CONFIG'][$GLOBALS['TL_CONFIG']['dmaSimpleGridType']];
         } else {
             static::$arrCache['grid'] = $GLOBALS['DMA_SIMPLEGRID_CONFIG'][$GLOBALS['DMA_SIMPLEGRID_FALLBACK']];
         }
     }
 
-    public static function getData($strKey): mixed
+    /**
+     * @internal Resets the cached grid configuration (e.g. in tests)
+     */
+    public static function reset(): void
+    {
+        static::$arrCache = [];
+    }
+
+    public static function getData(string $strKey): mixed
     {
         static::initialize();
 

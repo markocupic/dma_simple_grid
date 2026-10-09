@@ -22,9 +22,6 @@ use Dma\DmaSimpleGrid\DmaDmaSimpleGrid;
 
 class Plugin implements BundlePluginInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getBundles(ParserInterface $parser)
     {
         return [
@@ -32,7 +29,7 @@ class Plugin implements BundlePluginInterface
                 ->setLoadAfter(
                     [
                         ContaoCoreBundle::class,
-                    ]
+                    ],
                 ),
         ];
     }

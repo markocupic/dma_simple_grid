@@ -18,11 +18,11 @@ use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\CoreBundle\Routing\ScopeMatcher;
-use Contao\Template;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement(DmaSimplegridColumnStopController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_column_stop')]
+#[AsContentElement(DmaSimplegridColumnStopController::TYPE, category: 'dma_simplegrid', template: 'content_element/dma_simplegrid_column_stop')]
 class DmaSimplegridColumnStopController extends AbstractContentElementController
 {
     public const TYPE = 'dma_simplegrid_column_stop';
@@ -31,7 +31,7 @@ class DmaSimplegridColumnStopController extends AbstractContentElementController
     {
     }
 
-    protected function getResponse(Template $template, ContentModel $model, Request $request): Response
+    protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
         if ($this->scopeMatcher->isBackendRequest($request)) {
             return new Response('', Response::HTTP_NO_CONTENT);
