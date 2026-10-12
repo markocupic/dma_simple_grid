@@ -12,8 +12,6 @@ declare(strict_types=1);
  * @link https://github.com/DMAGmbH/dma_simple_grid
  */
 
-use Dma\DmaSimpleGrid\DataContainer\AcrossTablesDcaCallbacks;
-use Dma\DmaSimpleGridHelper;
 
 /**
  * Fields

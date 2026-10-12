@@ -198,6 +198,69 @@ $GLOBALS['DMA_SIMPLEGRID_CONFIG']['bootstrap4'] = [
     ],
 ];
 
+$GLOBALS['DMA_SIMPLEGRID_CONFIG']['bootstrap6'] = [
+    'name'   => 'Twitter Bootstrap 6',
+    'config' => [
+        'hasWrapper'           => true,
+        'hasRows'              => true,
+        'hasColumns'           => true,
+        'hasColumnOffset'      => true,
+        'hasColumnOffsetReset' => true,
+        'hasColumnOffsetRight' => false,
+        // Bootstrap 6 has no push/pull classes anymore (use the order utilities instead)
+        'hasColumnPush'        => false,
+        'hasColumnPull'        => false,
+        'hasWrapperClasses'    => true,
+        'hasRowClasses'        => false,
+        'hasColumnClasses'     => false,
+        'row-class'            => 'row',
+        'wrapper-class'        => '',
+        'columns-sizes'        => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        // Bootstrap 6 uses the responsive prefix syntax, e.g. "md:col-6" instead of "col-md-6"
+        'columns-config'       => [
+            'xs'  => [
+                'name'         => 'extra small',
+                'column-class' => 'col-%d',
+                'offset-class' => 'offset-%d',
+                'hide-class'   => 'd-none',
+            ],
+            'sm'  => [
+                'name'         => 'small',
+                'column-class' => 'sm:col-%d',
+                'offset-class' => 'sm:offset-%d',
+                'hide-class'   => 'sm:d-none',
+            ],
+            'md'  => [
+                'name'         => 'medium',
+                'column-class' => 'md:col-%d',
+                'offset-class' => 'md:offset-%d',
+                'hide-class'   => 'md:d-none',
+            ],
+            'lg'  => [
+                'name'         => 'large',
+                'column-class' => 'lg:col-%d',
+                'offset-class' => 'lg:offset-%d',
+                'hide-class'   => 'lg:d-none',
+            ],
+            'xl'  => [
+                'name'         => 'extra large',
+                'column-class' => 'xl:col-%d',
+                'offset-class' => 'xl:offset-%d',
+                'hide-class'   => 'xl:d-none',
+            ],
+            '2xl' => [
+                'name'         => '2x large',
+                'column-class' => '2xl:col-%d',
+                'offset-class' => '2xl:offset-%d',
+                'hide-class'   => '2xl:d-none',
+            ],
+        ],
+        'additional-classes'   => [
+            'wrapper' => ['container', 'container-fluid', 'sm:container', 'md:container', 'lg:container', 'xl:container', '2xl:container'],
+        ],
+    ],
+];
+
 $GLOBALS['DMA_SIMPLEGRID_CONFIG']['gr-grid'] = [
     'name'   => 'Twitter Bootstrap (with GRgrid)',
     'config' => [

@@ -18,11 +18,12 @@ use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\CoreBundle\Routing\ScopeMatcher;
-use Contao\Template;
+use Contao\CoreBundle\Twig\FragmentTemplate;
+use Dma\DmaSimpleGrid\DataContainer\DcaUtil;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement(DmaSimplegridColumnStartController::TYPE, category:'dma_simplegrid', template:'ce_dma_simplegrid_column_start')]
+#[AsContentElement(DmaSimplegridColumnStartController::TYPE, category: 'dma_simplegrid', template: 'content_element/dma_simplegrid_column_start')]
 class DmaSimplegridColumnStartController extends AbstractContentElementController
 {
     public const TYPE = 'dma_simplegrid_column_start';
@@ -31,16 +32,13 @@ class DmaSimplegridColumnStartController extends AbstractContentElementControlle
     {
     }
 
-    protected function getResponse(Template $template, ContentModel $model, Request $request): Response
+    protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
         if ($this->scopeMatcher->isBackendRequest($request)) {
             return new Response('', Response::HTTP_NO_CONTENT);
         }
 
-        $arrClasses = explode(' ', $template->class.' column');
-        $arrClasses = array_unique(array_filter($arrClasses));
-
-        $template->class = implode(' ', $arrClasses);
+        $template->set('grid_classes', DcaUtil::getColumnStartClasses($model->row()));
 
         return $template->getResponse();
     }

@@ -54,7 +54,7 @@ class FormSimpleGridRowStop extends Widget
         /** @var ScopeMatcher $matcher */
         $matcher = System::getContainer()->get('contao.routing.scope_matcher');
 
-        if (version_compare(VERSION, '4.0', '>=') && $matcher->isBackendRequest($request)) {
+        if ($request && $matcher->isBackendRequest($request)) {
             $objTemplate = new BackendTemplate('be_wildcard');
             $objTemplate->wildcard = '### '.mb_strtoupper($GLOBALS['TL_LANG']['FFL']['dma_simplegrid_row_stop'][0]).' ###';
 

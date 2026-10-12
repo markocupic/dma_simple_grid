@@ -1,6 +1,14 @@
-# PhpStorm stuff
-.idea/**/*.*
-.idea
-.idea/
+# IDE
+/.idea/
 
-tools/phpunit/.phpunit.result.cache
+# Tools
+/tools/*/vendor/
+/tools/*/composer.lock
+
+# Composer
+/vendor/
+/composer.lock
+
+# PHPUnit
+/.phpunit.result.cache
+/.phpunit.cache/

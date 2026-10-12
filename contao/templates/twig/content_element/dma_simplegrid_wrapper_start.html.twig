@@ -1,0 +1,12 @@
+{#
+    Opens the grid wrapper. The matching "wrapper stop" element closes it.
+
+    Context:
+        grid_classes    The CSS classes of the grid wrapper (list of strings)
+#}
+{% set wrapper_attributes = attrs()
+    .setIfExists('id', element_html_id|default)
+    .addClass([element_css_classes|default]|merge(grid_classes))
+    .mergeWith(wrapper_attributes|default)
+%}
+<div{{ wrapper_attributes }}>

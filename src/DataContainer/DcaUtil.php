@@ -89,14 +89,14 @@ class DcaUtil
             if (\is_array($arrElementSettings)) {
                 foreach ($arrElementSettings as $columnKey => $varValue) {
                     if ($varValue) {
-                        if(!isset($gridConfig['columns-config'][$columnKey]['column-class'])){
+                        if (!isset($gridConfig['columns-config'][$columnKey]['column-class'])) {
                             continue;
                         }
 
                         if ('hide' === $varValue) {
                             $arrConfiguredClasses[] = $gridConfig['columns-config'][$columnKey]['hide-class'];
                         } else {
-                            $arrConfiguredClasses[] = sprintf($gridConfig['columns-config'][$columnKey]['column-class'], $varValue);
+                            $arrConfiguredClasses[] = \sprintf($gridConfig['columns-config'][$columnKey]['column-class'], $varValue);
                         }
                     }
                 }
@@ -109,9 +109,9 @@ class DcaUtil
             if (\is_array($arrElementSettings)) {
                 foreach ($arrElementSettings as $columnKey => $varValue) {
                     if ('reset' === $varValue && isset($gridConfig['hasColumnOffsetReset']) && $gridConfig['hasColumnOffsetReset']) {
-                        $arrConfiguredClasses[] = sprintf($gridConfig['columns-config'][$columnKey]['offset-class'], 0);
+                        $arrConfiguredClasses[] = \sprintf($gridConfig['columns-config'][$columnKey]['offset-class'], 0);
                     } elseif ($varValue) {
-                        $arrConfiguredClasses[] = sprintf($gridConfig['columns-config'][$columnKey]['offset-class'], $varValue);
+                        $arrConfiguredClasses[] = \sprintf($gridConfig['columns-config'][$columnKey]['offset-class'], $varValue);
                     }
                 }
             }
@@ -123,9 +123,9 @@ class DcaUtil
             if (\is_array($arrElementSettings)) {
                 foreach ($arrElementSettings as $columnKey => $varValue) {
                     if ('reset' === $varValue && isset($gridConfig['hasColumnOffsetRightReset']) && $gridConfig['hasColumnOffsetRightReset']) {
-                        $arrConfiguredClasses[] = sprintf($gridConfig['columns-config'][$columnKey]['offset-right-class'], 0);
+                        $arrConfiguredClasses[] = \sprintf($gridConfig['columns-config'][$columnKey]['offset-right-class'], 0);
                     } elseif ($varValue) {
-                        $arrConfiguredClasses[] = sprintf($gridConfig['columns-config'][$columnKey]['offset-right-class'], $varValue);
+                        $arrConfiguredClasses[] = \sprintf($gridConfig['columns-config'][$columnKey]['offset-right-class'], $varValue);
                     }
                 }
             }
@@ -137,9 +137,9 @@ class DcaUtil
             if (\is_array($arrElementSettings)) {
                 foreach ($arrElementSettings as $columnKey => $varValue) {
                     if ('reset' === $varValue && isset($gridConfig['hasColumnPushReset']) && $gridConfig['hasColumnPushReset']) {
-                        $arrConfiguredClasses[] = sprintf($gridConfig['columns-config'][$columnKey]['push-class'], 0);
+                        $arrConfiguredClasses[] = \sprintf($gridConfig['columns-config'][$columnKey]['push-class'], 0);
                     } elseif ($varValue) {
-                        $arrConfiguredClasses[] = sprintf($gridConfig['columns-config'][$columnKey]['push-class'], $varValue);
+                        $arrConfiguredClasses[] = \sprintf($gridConfig['columns-config'][$columnKey]['push-class'], $varValue);
                     }
                 }
             }
@@ -151,9 +151,9 @@ class DcaUtil
             if (\is_array($arrElementSettings)) {
                 foreach ($arrElementSettings as $columnKey => $varValue) {
                     if ('reset' === $varValue && isset($gridConfig['hasColumnPullReset']) && $gridConfig['hasColumnPullReset']) {
-                        $arrConfiguredClasses[] = sprintf($gridConfig['columns-config'][$columnKey]['pull-class'], 0);
+                        $arrConfiguredClasses[] = \sprintf($gridConfig['columns-config'][$columnKey]['pull-class'], 0);
                     } elseif ($varValue) {
-                        $arrConfiguredClasses[] = sprintf($gridConfig['columns-config'][$columnKey]['pull-class'], $varValue);
+                        $arrConfiguredClasses[] = \sprintf($gridConfig['columns-config'][$columnKey]['pull-class'], $varValue);
                     }
                 }
             }
@@ -310,5 +310,81 @@ class DcaUtil
         }
 
         return implode('; ', $arrConfiguredClasses);
+    }
+
+    /**
+     * Returns the CSS classes of the "wrapper start" content element.
+     *
+     * @return list<string>
+     */
+    public static function getWrapperClasses(array $row): array
+    {
+        $gridConfig = GridConfig::getDataAll();
+        $classes = [];
+
+        if (($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalWrapperClasses'] ?? false) && !empty($gridConfig['additional-classes']['wrapper']) && !empty($row['dma_simplegrid_additionalwrapperclasses'])) {
+            $classes = array_merge($classes, StringUtil::deserialize($row['dma_simplegrid_additionalwrapperclasses'], true));
+        }
+
+        $classes[] = 'wrapper';
+        $classes[] = (string) ($gridConfig['wrapper-class'] ?? '');
+
+        return self::normalizeClasses($classes);
+    }
+
+    /**
+     * Returns the CSS classes of the "row start" content element.
+     *
+     * @return list<string>
+     */
+    public static function getRowClasses(array $row): array
+    {
+        $gridConfig = GridConfig::getDataAll();
+        $classes = [];
+
+        if (($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useBlockGrid'] ?? false) && !empty($row['dma_simplegrid_blocksettings'])) {
+            $blockSettings = StringUtil::deserialize($row['dma_simplegrid_blocksettings'], true);
+
+            if (1 === \count($blockSettings) && \is_array($blockSettings[0])) {
+                foreach ($blockSettings[0] as $columnKey => $value) {
+                    if ($value && isset($gridConfig['block-config'][$columnKey]['block-class'])) {
+                        $classes[] = \sprintf($gridConfig['block-config'][$columnKey]['block-class'], $value);
+                    }
+                }
+            }
+        }
+
+        if (($GLOBALS['TL_CONFIG']['dmaSimpleGrid_useAdditionalRowClasses'] ?? false) && !empty($gridConfig['additional-classes']['row']) && !empty($row['dma_simplegrid_additionalrowclasses'])) {
+            $classes = array_merge($classes, StringUtil::deserialize($row['dma_simplegrid_additionalrowclasses'], true));
+        }
+
+        if (!empty($gridConfig['row-class'])) {
+            $classes = array_merge($classes, explode(' ', (string) $gridConfig['row-class']));
+        }
+
+        // gridlex
+        $classes = array_map(static fn ($class): string => str_replace('^', '', (string) $class), $classes);
+
+        return self::normalizeClasses($classes);
+    }
+
+    /**
+     * Returns the CSS classes of the "column start" content element.
+     *
+     * @return list<string>
+     */
+    public static function getColumnStartClasses(array $row): array
+    {
+        return self::normalizeClasses(['column', ...explode(' ', self::getColumnClasses($row))]);
+    }
+
+    /**
+     * @param array<mixed> $classes
+     *
+     * @return list<string>
+     */
+    private static function normalizeClasses(array $classes): array
+    {
+        return array_values(array_unique(array_filter(array_map('strval', $classes))));
     }
 }
